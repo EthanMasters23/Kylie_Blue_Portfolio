@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Kylie Blue Photography</title>
+    <link rel="stylesheet" href="{% static 'portfolio/kylieportfolio.css' %}">
+</head>
+
+<header class="navbar">
+    <button class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="logo">
+        <h1>KB</h1>
+    </div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+            <li><a href="{% url 'booking' %}">Booking</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('open');
+
+            if (navLinks.classList.contains('open')) {
+                navLinks.style.visibility = "visible";
+            } else {
+                setTimeout(() => {
+                    navLinks.style.visibility = "hidden";
+                }, 500); 
+            }
+        }
+    </script>
+</header>
+<div class="title" >
+    <h1 class="portfolio-header"></h1>
+</div>
+<body>
+    <section class="portfolio-grid">
+        <div class="portfolio-item">
+            <img src="{% static 'portfolio/images/20C17107-6003-476B-A906-B69CFB631C18.jpg' %}" alt="Photography">
+            <div class="name-overlay">DIVA</div>
+        </div>
+        <div class="portfolio-item">
+            <img src="{% static 'portfolio/images/38DA5EA5-7D66-4C1F-B0EB-CAE78C45B2E9.JPEG' %}" alt="Photography">
+            <div class="name-overlay">SLAY</div>
+        </div>
+        <div class="portfolio-item">
+            <img src="{% static 'portfolio/images/67BA8BBA-6C7C-47BA-AE16-836687324804_1_105_c.jpg' %}" alt="Photography">
+            <div class="name-overlay">CUNTY</div>
+        </div>
+        <div class="portfolio-item">
+            <img src="{% static 'portfolio/images/78B52311-2CBD-4974-A0C5-9A0E04AFC37B.JPG' %}" alt="Photography">
+            <div class="name-overlay">LORE</div>
+        </div>
+        <div class="portfolio-item">
+            <img src="{% static 'portfolio/images/96DD667C-E41C-409C-8434-28FDBCBC921B.jpg' %}" alt="Photography">
+            <div class="name-overlay">BOOTS</div>
+        </div>
+        <div class="portfolio-item">
+            <img src="{% static 'portfolio/images/115D12CD-5044-4371-A5D8-BAF0EE323928_1_105_c copy2.jpg' %}" alt="Photography">
+            <div class="name-overlay">DEMURE</div>
+        </div>
+        <div class="portfolio-item">
+            <img src="{% static 'portfolio/images/546C7B28-F910-43D0-927F-72F2E97FE1A1_1_105_c.jpg' %}" alt="Photography">
+            <div class="name-overlay">DEMURE</div>
+        </div>
+        <div class="portfolio-item">
+            <img src="{% static 'portfolio/images/8178A285-F045-483E-84C1-0AA770B18F0A.jpg' %}" alt="Photography">
+            <div class="name-overlay">DEMURE</div>
+        </div>
+        <div class="portfolio-item">
+            <img src="{% static 'portfolio/images/0000006815366998-R1-009-3 copy.jpg' %}" alt="Photography">
+            <div class="name-overlay">DEMURE</div>
+        </div>
+        <div class="portfolio-item">
+            <img src="{% static 'portfolio/images/115D12CD-5044-4371-A5D8-BAF0EE323928_1_105_c copy2.jpg' %}" alt="Photography">
+            <div class="name-overlay">DEMURE</div>
+        </div>
+        <div class="portfolio-item">
+            <img src="{% static 'portfolio/images/115D12CD-5044-4371-A5D8-BAF0EE323928_1_105_c copy2.jpg' %}" alt="Photography">
+            <div class="name-overlay">DEMURE</div>
+        </div>
+        <div class="portfolio-item">
+            <img src="{% static 'portfolio/images/115D12CD-5044-4371-A5D8-BAF0EE323928_1_105_c copy2.jpg' %}" alt="Photography">
+            <div class="name-overlay">DEMURE</div>
+        </div>
+        
+    </section>
+    <section class="photo-grid">
+        <div class="grid-container">
+          <div class="grid-item large">
+            <img src="{% static 'portfolio/images/546C7B28-F910-43D0-927F-72F2E97FE1A1_1_105_c.jpg' %}" alt="Image 1">
+          </div>
+          <div class="grid-item tall">
+            <img src="{% static 'portfolio/images/8178A285-F045-483E-84C1-0AA770B18F0A.jpg' %}" alt="Image 2">
+          </div>
+          <div class="grid-item tall">
+            <img src="{% static 'portfolio/images/8326A2C0-D8D9-4ED5-ADF3-FC344222F2AC_1_105_c copy2.jpg' %}" alt="Image 3">
+          </div>
+          <div class="grid-item small">
+            <img src="{% static 'portfolio/images/0000006815366998-R1-009-3 copy.jpg' %}" alt="Image 4">
+          </div>
+          <div class="grid-item small">
+            <img src="{% static 'portfolio/images/171916009682-R1-025-11.jpg' %}" alt="Image 5">
+          </div>
+        </div>
+      </section>
+      <section class="fashion-grid">
+        <div class="fashion-grid-container">
+          <div class="fashion-grid-item large">
+            <img src="{% static 'portfolio/images/171916009683-R1-047-22.jpg' %}" alt="Fashion 1">
+          </div>
+          <div class="fashion-grid-item tall">
+            <img src="{% static 'portfolio/images/856363007158-R1-067-32.jpg' %}" alt="Fashion 2">
+          </div>
+          <div class="fashion-grid-item wide">
+            <img src="{% static 'portfolio/images/171916009682-R1-025-11.jpg' %}" alt="Fashion 3">
+          </div>
+          <div class="fashion-grid-item medium">
+            <img src="{% static 'portfolio/images/171916009682-R1-025-11.jpg' %}" alt="Fashion 4">
+          </div>
+          <div class="fashion-grid-item large-vertical">
+            <img src="{% static 'portfolio/images/171916009682-R1-025-11.jpg' %}" alt="Fashion 5">
+          </div>
+          <div class="fashion-grid-item small">
+            <img src="{% static 'portfolio/images/171916009682-R1-025-11.jpg' %}" alt="Fashion 6">
+          </div>
+          <div class="fashion-grid-item medium-wide">
+            <img src="{% static 'portfolio/images/171916009682-R1-025-11.jpg' %}" alt="Fashion 7">
+          </div>
+        </div>
+      </section>
+      
+      
+    <footer>
+        <p>© 2024 Kylie Blue Photography. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

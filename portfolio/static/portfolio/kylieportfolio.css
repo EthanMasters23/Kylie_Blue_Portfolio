@@ -1,0 +1,691 @@
+/* GLOBAL STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    /* font-family: 'Helvetica Neue', sans-serif; */
+    background-color: #000000; /* White for main background */
+    color: #4A4A4A; /* Charcoal for text */
+    overflow-x: hidden;
+}
+
+.content-wrapper {
+    perspective: 1500px; /* 3D effect */
+}
+/* GLOBAL STYLES END */
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+
+/* SECTIONS */
+.section {
+    position: relative;
+    height: 100vh; /* Full viewport height */
+    display: flex; /* Flexbox to center content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    transition: transform 1s ease, opacity 1s ease; /* Smooth transition */
+    opacity: 0; /* Start sections invisible */
+    transform: translateY(100vh); /* Start sections below viewport */
+    z-index: 2;
+}
+
+/* Active Section */
+.section.active {
+    opacity: 1;
+    transform: translateY(0); /* Move into view */
+}
+
+/* Inactive Section */
+.section.inactive {
+    opacity: 0;
+    transform: translateY(-100vh); /* Move out of view */
+}
+/* SECTIONS END */
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+
+/* NAVBAR STYLES */
+.navbar {
+    position: fixed; /* Ensures the navbar stays fixed at the top of the page */
+    top: 0; /* Positioning at the very top */
+    left: 0; /* Aligned to the left edge */
+    width: 100%; /* Spans the full width of the viewport */
+    padding: 10px 15px; /* Adds spacing inside the navbar */
+    background-color: transparent; /* Transparent background for a minimal look */
+    z-index: 1000; /* Keeps the navbar on top of other elements */
+    display: flex; /* Allows us to use flexbox for layout */
+    justify-content: space-between; /* Ensures elements are spaced across the width */
+    align-items: center; /* Centers items vertically */
+}
+
+/* Hamburger Menu */
+.hamburger {
+    cursor: pointer; /* Changes the cursor to a pointer when hovering */
+    display: block; /* Ensures it's displayed as a block element */
+    background: none; /* No background color for a minimal look */
+    border: none; /* No border for the button */
+    outline: none; /* Removes default outline around the button when focused */
+    position: absolute; /* Positions it relative to the top left */
+    left: 20px; /* Slightly moves the hamburger menu from the left edge */
+    top: 20px; /* Slightly moves the hamburger menu from the top edge */
+    z-index: 150; /* Keeps the hamburger menu on top of everything else */
+}
+
+.hamburger span {
+    display: block; /* Each span is a block, forming the lines of the hamburger */
+    width: 50px; /* Width of each line */
+    height: 2px; /* Height of each line */
+    margin: 5px; /* Space between each line */
+    background-color: #a7a7a7; /* White color for the hamburger lines */
+    transition: background-color 0.3s ease; /* Smooth transition effect when hovering */
+}
+
+.hamburger:hover span {
+    background-color: #ADD8E6; /* Light blue color when hovered over */
+}
+
+/* Hamburger Menu Content */
+.nav-links {
+    visibility: hidden; /* Initially hidden until the hamburger is clicked */
+    opacity: 0; /* Fully transparent by default */
+    position: absolute; /* Positioned relative to the top left */
+    top: 60px; /* Slight margin from the top for spacing */
+    left: 20px; /* Slight margin from the left for spacing */
+    flex-direction: column; /* Ensures the links stack vertically */
+    background: none; /* No background for the dropdown (transparent) */
+    height: 0; /* Height starts at 0 for the sliding effect */
+    overflow: hidden; /* Prevents the content from spilling out when hidden */
+    transition: height 0.5s ease, opacity 0.5s ease, visibility 0s 0.5s; /* Smooth transition for height and opacity */
+    z-index: 100; /* Keeps it above other elements */
+}
+
+.nav-links.open {
+    visibility: visible; /* Makes the menu visible */
+    height: 150px; /* Expands the height when opened (adjust based on the number of links) */
+    opacity: 1; /* Fully opaque when opened */
+    transition: height 0.5s ease, opacity 0.5s ease; /* Smooth transition when opening */
+}
+
+.nav-links li {
+    list-style: none; /* Removes default bullet points from list items */
+    margin: 10px 0; /* Adds vertical space between each link */
+    opacity: 0; /* Initially hidden (transparent) */
+    transform: translateY(-20px); /* Moves the links slightly upwards before animation */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smoothly fades in and moves down */
+}
+
+.nav-links.open li {
+    opacity: 1; /* Links become visible when menu is opened */
+    transform: translateY(0); /* Moves the links back to their normal position */
+}
+
+/* Delay animations for each link to create a staggered effect */
+.nav-links li:nth-child(1) {
+    transition-delay: 0.1s; /* First link appears after a 0.1s delay */
+}
+
+.nav-links li:nth-child(2) {
+    transition-delay: 0.2s; /* Second link appears after a 0.2s delay */
+}
+
+.nav-links li:nth-child(3) {
+    transition-delay: 0.3s; /* Third link appears after a 0.3s delay */
+}
+
+.nav-links li:nth-child(4) {
+    transition-delay: 0.4s; /* Fourth link appears after a 0.4s delay */
+}
+
+.nav-links a {
+    font-size: 1.5rem; /* Sets a larger font size for better readability */
+    color: #a7a7a7; /* White color for the links */
+    text-decoration: none; /* Removes the underline from links */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.nav-links a:hover {
+    color: #ADD8E6; /* Light blue color when hovering over links */
+}
+
+/* Logo Styling */
+.logo {
+    position: absolute; /* Positioned in the middle of the navbar */
+    top: 20px; /* Slightly moved from the top */
+    left: 50%; /* Horizontally centered using left 50% and translate */
+    transform: translateX(-50%); /* Offsets to center the logo */
+    font-family: "Bodoni Moda SC", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 1rem; /* Adjusts the size of the logo text */
+    font-weight: 100; /* Thin and elegant font weight */
+    color: #a7a7a7; /* White color for the logo */
+    text-transform: uppercase; /* Converts the logo text to uppercase */
+    border: 2px solid #a7a7a7; /* Thin white circular border around the logo */
+    border-radius: 50%; /* Rounds the border into a circle */
+    padding: 10px 10px; /* Padding inside the circular border */
+}
+/* NAVBAR STYLES END */
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+
+/* %%%%%% LANDING PAGE %%%%%% */
+/* MAIN SECTION */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    color: #FFFFFF; /* White text */
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1; /* Ensure the video is behind the content */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    color: #a7a7a7;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-align: center;
+    font-family: "Bodoni Moda SC", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: #ece9e9; /* White text */
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5); /* Soft shadow for readability */
+    margin: 0;
+    line-height: 1.1;
+    white-space: pre-wrap; /* For new line */
+}
+
+.hero-arrow {
+    position: absolute;
+    bottom: 30px; /* Adjusted bottom padding */
+    left: 50%;
+    z-index: 5;
+    transform: translateX(-50%);
+    font-size: 3rem; /* Slightly larger */
+    font-weight: 5; /* Thin and elegant */
+    color: #a7a7a7;
+    cursor: pointer;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+/* MAIN SECTION END */
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+
+/* ABOUT SECTION */
+.about {
+    padding: 100px 10%;
+    text-align: center;
+    background-color: #F5F5F5; /* Very light grey background for contrast */
+}
+
+.about h2 {
+    font-size: 2.5rem;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 20px;
+    color: #4A4A4A;
+}
+
+.about p {
+    font-size: 1.2rem;
+    font-family: 'Times New Roman', Times, serif;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+    color: #4A4A4A;
+}
+/* ABOUT SECTION END */
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+
+/* GALLERY SECTION */
+.gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    background-color: #FFFFFF; /* White background */
+    position: relative;
+    overflow-x: hidden;
+}
+
+.gallery-wrapper {
+    display: flex;
+    gap: 20px;
+    transform: translate3d(0, 0, 0);
+    animation: scroll-gallery 40s linear infinite;
+}
+
+@keyframes scroll-gallery {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.photo-item {
+    flex: 0 0 400px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Lighter shadow */
+    transition: transform 0.5s ease;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.photo-item:hover {
+    transform: scale(1.05);
+    border: 2px solid #FF4500; /* Vibrant Red border on hover */
+}
+
+.photo-item:hover img {
+    transform: scale(1.1);
+}
+/* GALLERY SECTION */
+
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+
+/* FOOTER SECTION */
+footer {
+    position: fixed;    
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(50, 50, 50, 0.6);  
+    color: #fff;        
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9rem;
+    z-index: 10000;      /* High enough so it stays above other content */
+}
+/* FOOTER SECTION END */
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+
+/* %%%%%%% CSS FOR SECONDARY PAGES %%%%%%% */
+
+
+/* BOOKING STYLES */
+/* Booking page container for this page only */
+.booking-page {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: #fff; /* Fallback if images fail */
+    /* Give the page some top padding so the form sits below the header */
+    padding-top: 120px;
+}
+
+/* Background container covering the viewport */
+.background-container {
+    position: absolute;
+    top: 0; /* Start behind the header */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Scrolling images container */
+.background-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%; /* Double height for seamless scrolling */
+    display: flex;
+    flex-direction: row; /* Columns side by side */
+    justify-content: space-around;
+    animation: scrollBackground 60s linear infinite;
+}
+
+/* Each image column */
+.background-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.background-column img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.background-column img:hover {
+    transform: scale(1.05);
+}
+
+/* Keyframes for vertical scrolling */
+@keyframes scrollBackground {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50%); /* Moves half the container's height */
+    }
+}
+
+/* Booking form container */
+.booking-form {
+    position: relative;
+    z-index: 2;          /* Above background images */
+    max-width: 600px;    /* Slightly narrower for a more compact look */
+    width: 90%;          /* Responsive width */
+    margin: 0 auto 50px; /* Horizontally centered, 50px bottom spacing */
+    padding: 20px;
+    background-color: rgba(245, 245, 245, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: left;    /* Keep form fields left-aligned */
+}
+
+.booking-form h2 {
+    font-size: 2.4rem;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    color: #4A4A4A;
+    margin-bottom: 20px;
+}
+
+.booking-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.booking-form label {
+    font-size: 1.1rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: #4A4A4A;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #CCCCCC;
+    font-size: 1rem;
+    background-color: #FFFFFF;
+    color: #4A4A4A;
+    width: 100%;
+}
+
+.booking-form button {
+    background-color: #FF4500;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px;
+    font-size: 1.2rem;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.booking-form button:hover {
+    background-color: #ADD8E6;
+}
+/* BOOKING STYLES END */
+
+
+/* %%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+
+
+/* CSS FOR PORTFOLIO PAGE */
+/* Portfolio Gallery Styles */
+
+/* Portfolio Grid -1 */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-gap: 20px;
+    margin-top: 150px;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.1); /* Zooms on hover */
+}
+
+.name-overlay {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #000;
+    font-weight: bold;
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.portfolio-item:hover .name-overlay {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr 1fr; /* 2 columns on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* 1 column on mobile screens */
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Portfolio Grid -1 */
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Photo grid section styling */
+  .photo-grid {
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Grid container */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four equal columns */
+    grid-gap: 20px;
+    max-width: 1200px; /* Restrict the grid container width */
+    margin: 0 auto;
+  }
+  
+  /* Grid item sizes */
+  .grid-item.large {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  
+  .grid-item.tall {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  
+  .grid-item.small {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr); /* Two columns for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .grid-container {
+      grid-template-columns: 1fr; /* Single column for very small screens */
+    }
+  }
+  
+  /* Reset image styles */
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Portfolio grid section */
+  .fashion-grid {
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* White background for a clean look */
+  }
+  
+  .fashion-grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 equal columns */
+    grid-gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Styling for different sized images in the grid */
+  .fashion-grid-item.large {
+    grid-column: span 3;
+    grid-row: span 2;
+  }
+  
+  .fashion-grid-item.tall {
+    grid-column: span 2;
+    grid-row: span 3;
+  }
+  
+  .fashion-grid-item.wide {
+    grid-column: span 3;
+    grid-row: span 1;
+  }
+  
+  .fashion-grid-item.medium {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+  
+  .fashion-grid-item.large-vertical {
+    grid-column: span 2;
+    grid-row: span 3;
+  }
+  
+  .fashion-grid-item.small {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  
+  .fashion-grid-item.medium-wide {
+    grid-column: span 3;
+    grid-row: span 1;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .fashion-grid-container {
+      grid-template-columns: repeat(4, 1fr); /* Change to 4 columns */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .fashion-grid-container {
+      grid-template-columns: repeat(2, 1fr); /* Change to 2 columns for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .fashion-grid-container {
+      grid-template-columns: 1fr; /* One column for mobile screens */
+    }
+  }
+  

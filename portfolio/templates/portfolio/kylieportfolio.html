@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kylie Blue Photography</title>
+    <link rel="stylesheet" href="{% static 'portfolio/kylieportfolio.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="navbar">
+    <button class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="logo">
+        <h1>KB</h1>
+    </div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+            <li><a href="{% url 'booking' %}">Booking</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('open');
+            if (navLinks.classList.contains('open')) {
+                navLinks.style.visibility = "visible";
+            } else {
+                setTimeout(() => {
+                    navLinks.style.visibility = "hidden";
+                }, 500); 
+            }
+        }
+    </script>
+</header>
+<div class="content-wrapper">
+    <section class="hero section" data-section="hero">
+        <video autoplay muted loop playsinline class="hero-video" preload="auto">
+            <source src="{% static 'videos/hawaii3.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h1>Kylie Blue<br>Photography</h1>
+        </div>
+        <div class="hero-arrow">↓</div>
+    </section>    
+    <section class="about section" data-section="about">
+        <div class="about-content">
+            <h2>About Me</h2>
+            <p>I’m Kylie, a photographer based in Atlanta. 
+                My work reflects my passion for capturing authentic moments, 
+                highlighting the subtle beauty of everyday life blah blah blah...</p>
+        </div>
+    </section>
+    <section class="gallery section" data-section="gallery">
+        <div class="gallery-wrapper">
+            <!-- Repeat the photo-item div as needed -->
+            <div class="photo-item"><img src="{% static 'portfolio/images/20C17107-6003-476B-A906-B69CFB631C18.jpg' %}" alt="Photography"></div>
+            <div class="photo-item"><img src="{% static 'portfolio/images/38DA5EA5-7D66-4C1F-B0EB-CAE78C45B2E9.JPEG' %}" alt="Photography"></div>
+            <div class="photo-item"><img src="{% static 'portfolio/images/67BA8BBA-6C7C-47BA-AE16-836687324804_1_105_c.jpg' %}" alt="Photography"></div>
+            <div class="photo-item"><img src="{% static 'portfolio/images/78B52311-2CBD-4974-A0C5-9A0E04AFC37B.JPG' %}" alt="Photography"></div>
+            <div class="photo-item"><img src="{% static 'portfolio/images/96DD667C-E41C-409C-8434-28FDBCBC921B.jpg' %}" alt="Photography"></div>
+        </div>
+    </section>
+    <section class="contact section" data-section="contact">
+        <div class="contact-content">
+            <h2>Get in Touch</h2>
+            <p>(reach out or something) <a href="mailto:kylieblue@something.com">kyblue@something.com</a>.</p>
+        </div>
+    </section>
+</div>
+<footer>
+    <p>© 2024 Kylie Blue Photography. All rights reserved.</p>
+</footer>
+<script src="{% static 'portfolio/animations.js' %}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

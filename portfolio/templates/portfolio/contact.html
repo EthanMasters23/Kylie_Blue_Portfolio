@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Kylie Blue Photography</title>
+    <link rel="stylesheet" href="{% static 'portfolio/kylieportfolio.css' %}">
+</head>
+<header class="navbar">
+    <button class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="logo">
+        <h1>KB</h1>
+    </div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+            <li><a href="{% url 'booking' %}">Booking</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<body class="booking-page">
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('open');
+            if (navLinks.classList.contains('open')) {
+                navLinks.style.visibility = "visible";
+            } else {
+                setTimeout(() => {
+                    navLinks.style.visibility = "hidden";
+                }, 500);
+            }
+        }
+    </script>
+    <div class="background-container">
+        <div class="background-slide">
+            <div class="background-column">
+                <img src="{% static 'portfolio/images/20C17107-6003-476B-A906-B69CFB631C18.jpg' %}" alt="Background Image 1">
+                <img src="{% static 'portfolio/images/856363007158-R1-067-32.jpg' %}" alt="Background Image 2">
+                <img src="{% static 'portfolio/images/20C17107-6003-476B-A906-B69CFB631C18.jpg' %}" alt="Background Image 3">
+            </div>
+            <div class="background-column">
+                <img src="{% static 'portfolio/images/856363007158-R1-067-32.jpg' %}" alt="Background Image 4">
+                <img src="{% static 'portfolio/images/20C17107-6003-476B-A906-B69CFB631C18.jpg' %}" alt="Background Image 5">
+                <img src="{% static 'portfolio/images/20C17107-6003-476B-A906-B69CFB631C18.jpg' %}" alt="Background Image 6">
+            </div>
+            <div class="background-column">
+                <img src="{% static 'portfolio/images/20C17107-6003-476B-A906-B69CFB631C18.jpg' %}" alt="Background Image 7">
+                <img src="{% static 'portfolio/images/20C17107-6003-476B-A906-B69CFB631C18.jpg' %}" alt="Background Image 8">
+                <img src="{% static 'portfolio/images/20C17107-6003-476B-A906-B69CFB631C18.jpg' %}" alt="Background Image 9">
+            </div>
+        </div>
+    </div>
+    <div class="booking-form">
+        <h2>Contact Me</h2>
+        <form action="{% url 'contact' %}" method="POST">
+            {% csrf_token %}
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="6" placeholder="Write your message here..."></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>© 2024 Kylie Blue Photography. All rights reserved.</p>
+    </footer>
+</body>
+</html>

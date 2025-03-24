@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Kylie Blue Photography</title>
+    <link rel="stylesheet" href="{% static 'portfolio/kylieportfolio.css' %}">
+</head>
+<header class="navbar">
+    <nav>
+        <ul class="nav-links">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+            <li><a href="{% url 'booking' %}">Booking</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<body>
+
+    <section class="portfolio">
+        <div class="portfolio-content">
+            <div class="gallery">
+                <div class="gallery-wrapper">
+                    <div class="photo-item"><img src="{% static 'portfolio/images/DSC04832.jpg' %}" alt="Photography"></div>
+                    <div class="photo-item"><img src="{% static 'portfolio/images/DSC05313.jpg' %}" alt="Photography"></div>
+                    <div class="photo-item"><img src="{% static 'portfolio/images/DSC04832.jpg' %}" alt="Photography"></div>
+                    <div class="photo-item"><img src="{% static 'portfolio/images/DSC05313.jpg' %}" alt="Photography"></div>
+                    <div class="photo-item"><img src="{% static 'portfolio/images/DSC04832.jpg' %}" alt="Photography"></div>
+                    <div class="photo-item"><img src="{% static 'portfolio/images/DSC05313.jpg' %}" alt="Photography"></div>
+                    <div class="photo-item"><img src="{% static 'portfolio/images/DSC04832.jpg' %}" alt="Photography"></div>
+                    <div class="photo-item"><img src="{% static 'portfolio/images/DSC05313.jpg' %}" alt="Photography"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Kylie Blue Photography. All rights reserved.</p>
+    </footer>
+</body>
+</html>
